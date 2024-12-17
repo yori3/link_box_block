@@ -1,7 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "title": "Link Box Block",
+	"apiVersion": 3,
+	"name": "create-block/link-box-block",
+	"version": "0.1.0",
+	"title": "Link Box Block",
     "icon": "universal-access-alt",
     "category": "design",
     "attributes": {
@@ -13,15 +15,19 @@
         "href": {
             "type": "string",
             "default": ""
+        },
+        "target": {
+            "type": "boolean",
+            "default": false
         }
     },
-	"name": "origins/link-box-block",
-	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",  
+	"description": "ボックス全体にリンクを設定できるブロック。",
+	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+    "anchor": true
 	},
-	"textdomain": "test",
+	"textdomain": "link-box-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

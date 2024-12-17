@@ -13,11 +13,12 @@ import { __ } from '@wordpress/i18n';
  */
 import { 
     TextControl,
+    ToggleControl,
     PanelBody
 } from '@wordpress/components';
 import {
   useBlockProps,
-  ColorPalette,
+  InnerBlocks,
   InspectorControls,
   BlockControls,
 } from '@wordpress/block-editor';
@@ -29,7 +30,6 @@ import {
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
-import { attribute } from 'postcss-selector-parser';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -37,13 +37,16 @@ import { attribute } from 'postcss-selector-parser';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
- * @return {WPElement} Element to render.
+ * @return {Element} Element to render.
  */
 
+const MY_TEMPLATE = [
+  [ 'core/paragraph', { placeholder: 'content' } ],
+];
 const ALLOWED_BLOCKS = ['core/heading' ,'core/image', 'core/paragraph' ];
 export default function Edit({ attributes, setAttributes }) {
     
-    return (
+  return (
 		<>
         <div { ...useBlockProps() }>
             <InspectorControls key="setting">
@@ -51,10 +54,19 @@ export default function Edit({ attributes, setAttributes }) {
                     <div id="linkSet">
                         <fieldset>
                             <TextControl
-                                label = {__('href')}
+                                label = {__('リンク先')}
                                 value = { attributes.href }
                                 onChange = { (newHref) => {
                                     setAttributes({href: newHref})
+                                }}
+                            />
+                        </fieldset>
+                        <fieldset>
+                            <ToggleControl
+                                label={__('別タブで開く')}
+                                checked={ attributes.target }
+                                onChange={ (newTarget) => {
+                                    setAttributes({target: newTarget})
                                 }}
                             />
                         </fieldset>
@@ -65,6 +77,8 @@ export default function Edit({ attributes, setAttributes }) {
                 orientation="horizontal" 
                 allowedBlocks={ ALLOWED_BLOCKS } 
                 href={ attributes.href }
+                target={ attributes.target}
+                template={ MY_TEMPLATE }
             />
         </div>
     </>

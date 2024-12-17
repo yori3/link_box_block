@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name:       Test
- * Description:       Example block scaffolded with Create Block tool.
+ * Plugin Name:       Link Box Block
+ * Description:       Box where you can set links.
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
  * Author:            The WordPress Contributors
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       test
+ * Text Domain:       link_box_block
  *
  * @package           create-block
  */
@@ -20,7 +20,7 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_test_block_init() {
+function create_block_link_box_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'create_block_test_block_init' );
+add_action( 'init', 'create_block_link_box_block_init' );

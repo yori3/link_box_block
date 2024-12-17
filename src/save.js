@@ -4,13 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { TextControl } from '@wordpress/components';
-import {
-  useBlockProps,
-  RichText,
-  AlignmentToolbar,
-  BlockControls,
-} from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -19,16 +13,16 @@ import {
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  *
- * @return {WPElement} Element to render.
+ * @return {Element} Element to render.
  */
 export default function save({ attributes, setAttributes }) {
-
     const blockProps = useBlockProps.save();
     return (
-        <a { ...blockProps }
-            href={ attributes.href }
-        >
-        <InnerBlocks.Content />
-        </a>
+            <a { ...blockProps }
+                    href={ attributes.href }
+                    target={ attributes.target ? '_blank' : '' }
+            >
+            <InnerBlocks.Content />
+            </a>
     );
 }
